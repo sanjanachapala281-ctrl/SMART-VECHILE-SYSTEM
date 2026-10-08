@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Smart Emergency Vehicle Priority and Traffic Coordination System">
+  <title>EVP — Emergency Vehicle Priority</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark"><span>EV</span><i></i></div>
+        <div>
+          <strong>EVP</strong>
+          <small>Emergency Priority</small>
+        </div>
+      </div>
+
+      <nav>
+        <a class="nav-item active" href="#overview"><span>⌂</span> Command Center</a>
+        <a class="nav-item" href="#network"><span>◈</span> Signal Network</a>
+        <a class="nav-item" href="#events"><span>≋</span> Event Stream</a>
+        <a class="nav-item" href="#impact"><span>↗</span> Impact</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="mini-status"><span class="pulse"></span><div><b>System online</b><small>All services operational</small></div></div>
+        <div class="version">TECH TITANS · HACKHERS 2.0</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">SMART CITY / EMERGENCY RESPONSE</div>
+          <h1>Emergency Vehicle Priority</h1>
+          <p>Real-time coordination simulation for safer, faster emergency passage.</p>
+        </div>
+        <div class="top-actions">
+          <div class="system-chip"><span class="pulse"></span> LIVE SIMULATION</div>
+          <button class="ghost-btn" id="resetBtn">↻ Reset</button>
+        </div>
+      </header>
+
+      <section class="hero-grid" id="overview">
+        <div class="map-card card">
+          <div class="card-head">
+            <div>
+              <span class="section-label">LIVE ROUTE</span>
+              <h2>Emergency corridor</h2>
+            </div>
+            <div class="route-badge" id="routeBadge">STANDBY</div>
+          </div>
+
+          <div class="city-map" id="cityMap">
+            <div class="map-grid"></div>
+            <div class="road horizontal r1"></div>
+            <div class="road horizontal r2"></div>
+            <div class="road vertical v1"></div>
+            <div class="road vertical v2"></div>
+            <div class="road-label l1">NORTH AVENUE</div>
+            <div class="road-label l2">CENTRAL LINK</div>
+            <div class="hospital"><span>✚</span><b>CARE CENTER</b><small>Emergency destination</small></div>
+
+            <div class="signal-node node-a">
+              <div class="signal-box"><i class="light red"></i><i class="light yellow"></i><i class="light green"></i></div>
+              <span>J-01</span>
+            </div>
+            <div class="signal-node node-b">
+              <div class="signal-box"><i class="light red"></i><i class="light yellow"></i><i class="light green"></i></div>
+              <span>J-02</span>
+            </div>
+            <div class="signal-node node-c">
+              <div class="signal-box"><i class="light red"></i><i class="light yellow"></i><i class="light green"></i></div>
+              <span>J-03</span>
+            </div>
+
+            <div class="car car1">●</div>
+            <div class="car car2">●</div>
+            <div class="car car3">●</div>
+            <div class="ambulance" id="ambulance"><span>✚</span><b>AMB-102</b></div>
+
+            <div class="map-overlay">
+              <div><span class="dot live"></span> Vehicle tracking active</div>
+              <div><span class="dot route"></span> Priority corridor</div>
+            </div>
+          </div>
+
+          <div class="map-controls">
+            <button class="primary-btn" id="startBtn">🚨 Start emergency simulation</button>
+            <button class="secondary-btn" id="pauseBtn">Ⅱ Pause</button>
+          </div>
+        </div>
+
+        <div class="status-column">
+          <div class="card vehicle-card">
+            <div class="card-head">
+              <div><span class="section-label">VEHICLE</span><h2>AMB-102</h2></div>
+              <span class="verified" id="verifyBadge">✓ VERIFIED</span>
+            </div>
+            <div class="vehicle-main">
+              <div class="vehicle-icon">🚑</div>
+              <div><b>Ambulance</b><span>Authorized emergency unit</span></div>
+            </div>
+            <div class="data-grid">
+              <div><span>Emergency</span><b id="emergencyState">INACTIVE</b></div>
+              <div><span>Direction</span><b>NORTH</b></div>
+              <div><span>Distance</span><b id="distance">2.8 km</b></div>
+              <div><span>Next junction</span><b id="nextJunction">J-01</b></div>
+            </div>
+          </div>
+
+          <div class="card signal-card">
+            <div class="card-head"><div><span class="section-label">TRAFFIC CONTROL</span><h2 id="signalTitle">J-01 · Normal</h2></div><span class="signal-state" id="signalState">RED</span></div>
+            <div class="big-signal">
+              <i class="light red" id="redLight"></i>
+              <i class="light yellow" id="yellowLight"></i>
+              <i class="light green" id="greenLight"></i>
+            </div>
+            <div class="safety-line"><span>Safety protocol</span><b id="safetyStatus">READY</b></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="metrics-grid" id="impact">
+        <div class="metric card"><span>RESPONSE TIME</span><strong id="responseTime">—</strong><small>simulation duration</small></div>
+        <div class="metric card"><span>EST. TIME SAVED</span><strong id="timeSaved">—</strong><small>vs. unmanaged route</small></div>
+        <div class="metric card"><span>PRIORITY JUNCTIONS</span><strong id="priorityCount">0</strong><small>coordinated in route</small></div>
+        <div class="metric card"><span>TRAFFIC IMPACT</span><strong id="trafficImpact">LOW</strong><small>temporary controlled hold</small></div>
+      </section>
+
+      <section class="lower-grid" id="network">
+        <div class="card control-card">
+          <div class="card-head"><div><span class="section-label">COORDINATION</span><h2>Decision pipeline</h2></div><span class="tiny-live"><span class="pulse"></span> ACTIVE</span></div>
+          <div class="pipeline">
+            <div class="step active" id="step1"><span>01</span><div><b>Detect</b><small>Emergency vehicle identified</small></div></div>
+            <div class="connector"></div>
+            <div class="step" id="step2"><span>02</span><div><b>Authenticate</b><small>Authorized unit verified</small></div></div>
+            <div class="connector"></div>
+            <div class="step" id="step3"><span>03</span><div><b>Locate</b><small>Route and next junction mapped</small></div></div>
+            <div class="connector"></div>
+            <div class="step" id="step4"><span>04</span><div><b>Coordinate</b><small>Priority corridor prepared</small></div></div>
+            <div class="connector"></div>
+            <div class="step" id="step5"><span>05</span><div><b>Respond</b><small>Signal priority granted safely</small></div></div>
+          </div>
+          <div class="alert-panel" id="trafficAlert">
+            <div class="alert-icon">◉</div><div><b>Traffic control</b><span>Waiting for an emergency request.</span></div>
+            <em>STANDBY</em>
+          </div>
+        </div>
+
+        <div class="card event-card" id="events">
+          <div class="card-head"><div><span class="section-label">SYSTEM LOG</span><h2>Event stream</h2></div><span class="event-count" id="eventCount">0 events</span></div>
+          <div class="event-list" id="eventList">
+            <div class="empty-event">Start the simulation to populate the live event stream.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="disclaimer">
+        <span>ⓘ</span>
+        <p><b>Simulation prototype.</b> Real-world deployment would require authorized integration with emergency services, traffic-signal infrastructure, secure vehicle authentication, communication networks, and applicable safety regulations.</p>
+      </section>
+
+      <footer>
+        <span>TECH TITANS</span><span>•</span><span>SMART VEHICLES</span><span>•</span><span>SOCIAL GOOD / PUBLIC SECTOR</span>
+      </footer>
+    </main>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
